@@ -1,27 +1,15 @@
 'use client'
-import TopBar from './TopBar'
-import NavLinks from './NavLinks'
 import { useWindowScroll } from 'react-use'
 import Link from 'next/link'
 import { Container } from '../Partials/Container'
 import useMenuHamburguerStore from '../../stores/useMenuHamburguerStore'
 import { useEffect } from 'react'
 import Icon from '../Adapters/Icon'
-import SearchForm from '../Forms/SearchForm'
-import { usePrismicLangs } from '@/hooks/usePrismicLangs'
-import { useCookies } from '@/stores/useCookies'
 
 export function Header() {
   const { y } = useWindowScroll()
   const { setShowMenuHamburguer } = useMenuHamburguerStore()
-  const { availableLangs } = usePrismicLangs()
   const pathname = typeof window !== 'undefined' ? window.location.pathname : ''
-  const { addCookie, getCookie } = useCookies()
-
-  function addLangCookie(lang: string) {
-    addCookie('lang', lang)
-    window.location.reload()
-  }
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -29,43 +17,54 @@ export function Header() {
 
   return (
     <header
-      className={`sticky top-0 z-50 w-full shadow-xl backdrop-blur transition-all ${
-        y > 0 ? 'bg-black/70' : 'bg-black'
-      } `}
+      className={`sticky top-10 z-50 max-w-7xl w-full mx-auto transition-all duration-500 rounded-lg 
+         overflow-hidden bg-cover bg-center bg-no-repeat 
+      
+      
+      `}
+      style={{
+        backgroundImage: "url('/img/header-bg.png')",
+      }}
     >
-      <TopBar />
       <Container>
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between relative z-10">
           <Link href="/">
             <img
-              src="/img/logo.png"
+              src="/img/logos/logo-unigastro.svg"
               alt=""
-              className="cursor-pointer py-3 transition-all"
-              style={{ height: y > 0 ? '3rem' : '4rem' }}
+              className="cursor-pointer  py-4 transition-all duration-300 hover:scale-105 drop-shadow-sm"
+              style={{ height: y > 0 ? '5rem' : '5rem' }}
             />
           </Link>
-          <SearchForm />
           <div className="hidden items-center gap-3 md:flex">
-            <NavLinks />
-            {availableLangs &&
-              availableLangs.length > 1 &&
-              availableLangs?.map((lang) => (
-                <span
-                  className="text-white text-sm cursor-pointer hover:opacity-70 uppercase"
-                  key={lang.id}
-                  onClick={() => addLangCookie(lang.id)}
-                  title={lang.name}
-                  style={{ opacity: getCookie('lang') === lang.id ? 1 : 0.5 }}
-                >
-                  {lang.id.split('-')[1]}
-                </span>
-              ))}
+            {/* <NavLinks /> */}
+            <div className="flex items-center gap-2 ">
+              <Icon
+                icon="ic:baseline-whatsapp"
+                className="transition-all bg-gradient-to-br from-[#38B841] to-[#2da635] rounded-full p-1 text-white shadow-md hover:shadow-lg hover:scale-110"
+                fontSize={24}
+              />
+              <p className="uppercase font-bold text-gray-700 text-sm">
+                Atendimento whatsapp (91) 98463-2182
+              </p>
+            </div>
+
+            <div className="flex items-center gap-2">
+              <Icon
+                icon="mdi:headset"
+                className="transition-all bg-gradient-to-br from-[#696DFF] to-[#5a5edd] rounded-full p-1 text-white shadow-md hover:shadow-lg hover:scale-110"
+                fontSize={24}
+              />
+              <p className="uppercase font-bold text-gray-700 text-sm">
+                call center (91) 3246-3939
+              </p>
+            </div>
           </div>
           <div
-            className="md:hidden"
+            className="md:hidden bg-white/20 backdrop-blur-sm rounded-full p-2 shadow-lg border border-white/30 hover:bg-white/30 transition-all cursor-pointer"
             onClick={() => setShowMenuHamburguer(true)}
           >
-            <Icon icon="mdi:menu" className="text-3xl text-white" />
+            <Icon icon="mdi:menu" className="text-2xl text-gray-600" />
           </div>
         </div>
       </Container>
