@@ -1,13 +1,10 @@
-import Footer from '@/components/Footer'
 import { Header } from '@/components/Header'
-import { MenuHamburguer } from '@/components/Partials/MenuHamburguer'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { Toaster } from 'react-hot-toast'
 import 'swiper/css/bundle'
 import '../styles/index.scss'
 import DialogPrivacityPolicy from '@/components/Dialogs/DialogPrivacityPolicy'
-import ScrollToTopButton from '@/components/Partials/ScrollToTopButton'
 const inter = Inter({ subsets: ['latin'] })
 export const dynamic = 'force-dynamic'
 
@@ -55,13 +52,13 @@ export default function RootLayout({
         />
         <meta name="google" content="notranslate" />
       </head>
-      <body className={inter.className}>
+      <body className={`${inter.className} bg-black`}>
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <Header />
         {children}
-        <ScrollToTopButton />
-        <Footer />
-        <MenuHamburguer />
+        {/* <ScrollToTopButton /> */}
+        {/* <Footer /> */}
+        {/* <MenuHamburguer /> */}
         <Toaster
           toastOptions={{
             className: 'bg-zinc-500 text-white',
