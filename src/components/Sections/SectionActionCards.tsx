@@ -7,7 +7,7 @@ export function SectionActionCards() {
       id: 1,
       icon: '/img/icons/card-icon-1.svg',
       title: 'MARCAR CONSULTA',
-      description: 'Escolha a especialidade, dia e horário de sua interesse',
+      description: 'Escolha a especialidade, dia e horário',
     },
     {
       id: 2,
@@ -19,31 +19,35 @@ export function SectionActionCards() {
       id: 3,
       icon: '/img/icons/card-icon-3.svg',
       title: 'RESULTADO DE EXAMES',
-      description: 'Tenha acesso aos seus exames laboratoriais e de imagem',
+      description: 'Acesso aos seus exames laboratoriais',
     },
   ]
 
   return (
-    <section className="pb-16 px-4">
+    <section className="py-4 md:py-8 px-2 md:px-4">
       <div className="max-w-6xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {services.map((service) => (
+        <div className="flex flex-col md:flex-row md:justify-center md:items-center gap-4 md:gap-8">
+          {services.map((service, index) => (
             <div
               key={service.id}
-              className="backdrop-blur-sm rounded-lg p-6 hover:bg-white/20 transition-all duration-300 cursor-pointer group flex items-center gap-4"
+              className={`backdrop-blur-sm rounded-lg p-4 md:p-6 hover:bg-white/20 transition-all duration-300 cursor-pointer group flex items-center gap-3 md:gap-4 w-full md:w-auto ${
+                index < services.length - 1
+                  ? 'md:border-r border-gray-300/30'
+                  : ''
+              }`}
             >
-              <div className="bg-red-500 w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+              <div className="bg-red-500 w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300 flex-shrink-0">
                 <img
                   src={service.icon}
                   alt={service.title}
-                  className="w-6 h-6 filter brightness-0 invert"
+                  className="w-5 h-5 md:w-6 md:h-6"
                 />
               </div>
-              <div className="flex-1">
-                <h3 className="text-white font-bold text-lg mb-2 tracking-wide">
+              <div className="text-left flex-1">
+                <h3 className="text-white font-bold text-sm md:text-lg mb-1 md:mb-2 tracking-wide">
                   {service.title}
                 </h3>
-                <p className="text-white/80 text-sm leading-relaxed">
+                <p className="text-white/80 text-xs md:text-sm leading-relaxed">
                   {service.description}
                 </p>
               </div>

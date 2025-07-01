@@ -2,13 +2,11 @@
 import { useWindowScroll } from 'react-use'
 import Link from 'next/link'
 import { Container } from '../Partials/Container'
-import useMenuHamburguerStore from '../../stores/useMenuHamburguerStore'
 import { useEffect } from 'react'
 import Icon from '../Adapters/Icon'
 
 export function Header() {
   const { y } = useWindowScroll()
-  const { setShowMenuHamburguer } = useMenuHamburguerStore()
   const pathname = typeof window !== 'undefined' ? window.location.pathname : ''
 
   useEffect(() => {
@@ -59,12 +57,6 @@ export function Header() {
                 call center (91) 3246-3939
               </p>
             </div>
-          </div>
-          <div
-            className="md:hidden bg-white/20 backdrop-blur-sm rounded-full p-2 shadow-lg border border-white/30 hover:bg-white/30 transition-all cursor-pointer"
-            onClick={() => setShowMenuHamburguer(true)}
-          >
-            <Icon icon="mdi:menu" className="text-2xl text-gray-600" />
           </div>
         </div>
       </Container>

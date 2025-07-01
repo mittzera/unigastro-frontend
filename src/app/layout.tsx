@@ -9,9 +9,9 @@ const inter = Inter({ subsets: ['latin'] })
 export const dynamic = 'force-dynamic'
 
 export const metadata: Metadata = {
-  title: 'BPN14 | Home',
-  description: 'Boilerplate Next 15 with Prismic, TypeScript and TailwindCSS',
-  keywords: ['Boilerplate', 'Next', 'Prismic', 'TypeScript', 'TailwindCSS'],
+  title: 'Unigastro | Home',
+  description: 'Unigastro Diagnósticos',
+  keywords: ['Unigastro', 'Diagnósticos', 'Uni', 'Gastro'],
   twitter: {
     card: 'summary_large_image',
   },
